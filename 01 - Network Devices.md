@@ -63,4 +63,4 @@ Connecter les appareils ensemble en utilisant le mode de branchement 'Automatica
 
 <img width="1041" height="363" alt="image" src="https://github.com/user-attachments/assets/24ceb2a3-1a8d-488f-96cf-0148ac59b67c" />   
   
-On voit que les PCs de chaque site se connectent aux switches. Ensuite, les switches se connectent à un routeur qui permet l'accès à Internet. On a un firewall qui est installé  à l'extérieur du réseau chez la branche de New York et un firewall installé à l'intérieur du réseau chez la branche de Tokyo
+On voit que les PCs de chaque site se connectent aux switches. Ensuite, les switches se connectent à un routeur qui permet l'accès à Internet et la communication inter-LAN. On a un firewall qui est installé  à l'extérieur du réseau chez la branche de New York et un firewall installé à l'intérieur du réseau chez la branche de Tokyo
