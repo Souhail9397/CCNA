@@ -13,32 +13,27 @@ Un standard est une spécification convenue qui permet par exemple à un - MacBo
 
 ## 🅰️ Histoire  
 
-- Le réseau tel que nous le connaissons aujourd'hui a commencé à être développé dans les **années 1960**  
+- Le réseau tel que nous le connaissons aujourd'hui a commencé à être développé dans les **années 1960**
 - Le ministère de la défense des États-Unis a créé **ARPANET** le **29 Octobre 1969**, permettant aux données d'être envoyées en petits paquets et permettant aux ordinateurs de communiquer simplement entre eux  
 - **ARPANET** utilisait initialement un protocole appelé **NCP (Network Control Program)**  
 - En 1974, **Vinton Cerf** et **Robert Kahn** conçoivent le premier protocole de communication par paquets entre deux ordinateurs (et toujours utilisé aujourd'hui) : le protocole **TCP/IP  (Transmission Control Protocol / Internet Protocol)**    
 - **ARPANET** est entièrement passé au protocole TCP/IP le **1er Janvier 1983**  
 - **TCP/IP** s'est popularisé auprès des fournisseurs de solutions car il a été publié comme étant un ensemble de standards pouvant être implémentés par les fournisseurs et pouvant être utilisé sur la plupart des réseaux  
-
+  
 <img width="6000" height="3375" alt="image" src="https://github.com/user-attachments/assets/b0c95413-bec1-4fd1-bcd9-8a4b31733cc5" />  
 
  ## 🅱️ Concepteurs des standards  
 
  La majorité des standards sont développés par des organisations de standards indépendantes avec la participation d'ingénieurs de plusieurs entreprises. On retrouve notamment l'IEEE et l'IETF :  
 
-<img width="702" height="150" alt="image" src="https://github.com/user-attachments/assets/74620496-785f-44ec-9922-661f8170519d" />  
-
 - **IEEE (Institute of Electrical and Electronics Engineers)** : développe plusieurs technologies utilisées sur les réseaux locaux comme **thernet (802.3)** et **Wi-Fi (802.11)**  
-
 - **IETF (Internet Engineering Task Force)** : communauté ouverte qui définit les protocoles utilisés sur Internet : **TCP, IP, UDP, HTTP, DNS...**. Publie les standards dans des documents appelés **RFCs (Requests For Comments)**    
 
-# :three: Modèle en couches  
-
-## 🅰️ Le modèle TCP/IP    
+# :three: Le modèle TCP/IP  
+  
+## 🅰️ Introduction     
   
 Les réseaux passent par plusieurs étapes pour faire circuler les données entre les machines : transmission physique des signaux, envois locaux sur LAN, routage entre réseaux...  Un modèle nous permet de regrouper les tâches connexes en couches. Chaque couche a un rôle spécifique dans la transmission de données et chaque couche utilise le service de la couche précédente et fournit des services à la couche suivante. Les protocoles que l'on trouve sur une couche ne peuvent pas être retrouvés sur une couche différente. Une couche peut contenir plusieurs protocoles comme **IP, TPC, HTTP...**  
-
-<img width="2560" height="1429" alt="image" src="https://github.com/user-attachments/assets/04c82c75-e2fa-4255-b27f-791240ddfb91" />   
   
 Prenons l'exemple d'un envoi de courrier par La Poste :  
 
@@ -46,10 +41,10 @@ Prenons l'exemple d'un envoi de courrier par La Poste :
 **Couche Destinataire** : "à Bob"                                                                 ➡️ **Couche Transport | Transport Layer**  
 **Couche Adresse** : adresse du destinataire                                                      ➡️ **Couche Internet | Internet Layer**  
 **Couche de Livraison locale** : livraison au centre de tri le plus proche                        ➡️ **Couche de Réseau local | Local Network Layer**  
-**Couche d'infrastructure** : la route qui permet à la voiture de livraison d'atteindre l'adresse ➡️ **Couche Physique | Physical Layer**
-
+**Couche d'infrastructure** : la route qui permet à la voiture de livraison d'atteindre l'adresse ➡️ **Couche Physique | Physical Layer**  
+  
 ## 🅱️ Rôle de chaque couche  
-
+  
 - **Application layer** : 
 - protocoles pour la communication entre processus d'application, créé et interprète la donnée  
 - définit comment l'application traite le format, envoie, et interprète la donnée  
@@ -142,6 +137,50 @@ Chaque couche communique avec la même couche sur le deuxième appareil.
 ➡️ un paquet est adressé à l'adresse IP de couche 3 de l'hôte de destination  
 ➡️ Une frame est adressée à l'adresse MAC de couche 2 du prochain point de saut  
 ➡️ Les signaux envoyés d'un port physique sont reçus par un port physique sur l'autre appareil  
+
+# 5️⃣ Le modèle OSI  
+
+➡️ TCP/IP a été développé dans les années 1970  
+➡️ Entre 1970 et 1980, l'**ISO (International Organization for Standardization)** a inventé un système en 7 couches, appelé le modèle **OSI Open Systems Interconnection)**   
+➡️ Les gouvernements ont désigné le modèle **OSI** comme pile recommandée pour les nouveaux déploiements informatiques   
+➡️ Avec le temps, le modèle **OSI** est devenu compliqué et n'a jamais été autant utilisé que **TCP/IP**  
+➡️ **TCP/IP** est redevenu le modèle recommandé d'utilisation, mais le modèle **OSI** est toujours utilisé comme base d'apprentissage aujourd'hui  
+➡️ Le modèle en 5 couches **(Application, Transport, Network, Data Link, Physical)** est le modèle principalement utilisé de nos jours, et le nom des couches vient du modèle **OSI**  
+
+<img width="1258" height="771" alt="image" src="https://github.com/user-attachments/assets/9e9cf0d1-4a08-4c93-88b1-ee83f1d59376" />  
+  
+
+## 🧠 A retenir  
+
+### Modèle TCP/IP  
+
+➡️ **Couche Application (5)** :  
+- Regroupe les couches **OSI 7,6 et 5**
+- **Protocoles** : HTTP/HTTPS, DNS, SMTP, SSH
+- **Rôle** : Les applications utilisent le réseau
+
+➡️ **Couche Transport (4)** :  
+- Correspond à **OSI 4**
+- **Protocoles** : TCP, UDP
+- **Rôle** : Fiabilité et ports
+
+➡️ **Couche Internet (3)** :  
+- Correspond à **OSI 3**
+- **Protocoles** : IP, ICMP
+- **Rôle** : Adressage IP et routage
+
+➡️ **Couche Liaison de données (2)** :  
+- Correspond à **OSI 2**
+- **Protocoles** : Ethernet, Wi-Fi
+- **Rôle** : Transmission locale avec les adresses MAC
+
+➡️ **Couche Physique (1)** :  
+- Correspond à **OSI 1**
+- **Rôle** : Transmission des bits sur câble ou radio
+
+## 💡 Phrase mémo  
+
+*Application parle, Transport organise, Internet route, Liaison livre localement, Physique transporte les bits.*
 
   
 
