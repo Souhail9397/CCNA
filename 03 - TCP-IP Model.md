@@ -45,7 +45,7 @@ Prenons l'exemple d'un envoi de courrier par La Poste :
   
 ## 🅱️ Rôle de chaque couche  
   
-- **Application layer** : 
+:five: **Application layer** : 
 - protocoles pour la communication entre processus d'application, créé et interprète la donnée  
 - définit comment l'application traite le format, envoie, et interprète la donnée  
 - les protocoles sur cette couche définissent le format des messages et les règles pour des tâches spécifiques comme :  
@@ -54,21 +54,21 @@ Prenons l'exemple d'un envoi de courrier par La Poste :
 -- envoyer/recevoir des mails **(SMTP, POP3, IMAP)**  
 - les routeurs et switchs ne se soucient pas des détails de cette couche, ils transportent seulement les messages dans le réseau
 
-- **Transport layer** :  
+:four: **Transport layer** :  
 - fournit une communication de bout en bout entre les processus d'application utilisant des numéros de ports  
 - aussi appelée **process-to-process** ou **service-to-service**  
 - utilise les numéros de port pour identifier le processus sur chaque hôte  
   -- quand un client web sur PC1 envoie une requête au serveur web hébergé sur SRV1, il adresse le message au port 80 de SRV1  
 - les protocoles de cette couche incluent **UDP (User Datagram Protocol)** -simple, efficace- et **TCP (Transmission Control Protocol)** -fonctionnalités plus robustes au-delà de l'adressage de messages de baseè
 
-- **Internet layer** :  
+:three: **Internet layer** :  
 - fournit une communication de bout en bout entre les hôtes à travers le réseau utilisant des adresses IP et des routeurs  
 - utilise les adresses IP pour identifier les hôtes dans le réseau  
   -- quand PC1 envoie un message à SRV1, il envoie le message à l'adresse IP de SRV1  
 - ce sont principalement les **routeurs** qui opèrent sur cette couche, utilisant l'adresse IP de destination pour envoyer le message à sa destination finale  
 - les protocoles de cette couche incluent **IP (IPv4, IPv6)** et **ICMP (Internet Control Message Protocol)**
 
-- **Local Network layer** :  
+:two: **Local Network layer** :  
 - fait circuler les données en saut à saut dans un réseau local utilisant des adresses MAC et des switches  
 - un saut est une étape sur le chemin entre deux appareils (ex : routeur -> hôte)  
 - les switchs ne font pas partie du chemin entre deux appareils, ils ne servent qu'à connecter des appareils dans un même réseau local  
@@ -78,7 +78,7 @@ Prenons l'exemple d'un envoi de courrier par La Poste :
   -- Routeur2 envoie le message à l'adresse MAC de l'interface de SRV1  
 - les protocoles de cette couche incluent Ethernet **(IEEE 802.3)** et **Wi-Fi (IEEE 802.11)**  
   
-- **Physical layer** :  
+:one: **Physical layer** :  
 - envoie des bits sous forme de signaux radio, électriques ou optiques sur le support physique  
 - définit des éléments tels que les câbles, les connecteurs, les niveaux de signal et les vitesses de liaison  
 
@@ -180,7 +180,21 @@ Chaque couche communique avec la même couche sur le deuxième appareil.
 
 ## 💡 Phrase mémo  
 
-*Application parle, Transport organise, Internet route, Liaison livre localement, Physique transporte les bits.*
+*Application parle, Transport organise, Internet route, Liaison livre localement, Physique transporte les bits.*  
+
+# 6️⃣ Lab  
+  
+<img width="421" height="183" alt="image" src="https://github.com/user-attachments/assets/5621ae01-6ea1-4de9-85c8-10ded49c1834" />
+  
+## 🅰️ Consignes  
+
+1 - Utiliser le mode simulation de Packet Tracer pour analyser le trafic envoyé à travers le réseau. Quelles couches du modèle OSI sont utilisées ?  
+
+2 - Renouveler l'adresse IP de PC1 pour générer du trafic de couche 7. Analyser le trafic avec le mode simulation  
+
+## 🅱️ Résultats  
+
+1 -   
 
   
 
