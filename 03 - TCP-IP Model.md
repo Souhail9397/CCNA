@@ -194,7 +194,15 @@ Chaque couche communique avec la même couche sur le deuxième appareil.
 
 ## 🅱️ Résultats  
 
-1 -   
+1 - Les couches du modèle OSI utilisées sont la couche physique (1) et la couche liaison de données (2).  
+
+2 - Pour renouveler l'adresse IP de PC1, il faut :  
+
+➡️ Cliquer sur PC1 -> Desktop -> Command promp  
+
+➡️ Taper la commande `ipconfig /release` puis `ipconfig renew`  
+
+En analysant le trafic on remarque des couches supplémentaires du modèle OSI : la couche réseau (3), couche transport (4) et couche application (7).    
 
   
 
