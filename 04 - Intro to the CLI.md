@@ -97,7 +97,84 @@ Pour enregistrer la configuration actuelle dans la **Startup-config**, on a le c
 ➡️ Router(config)#`write` : sauvegarde la configuration actuelle dans la **Startup-config**  
 ➡️ Router(config)#`write memory` : sauvegarde la configuration actuelle dans la **Startup-config**  
 ➡️ Router(config)#`copy running-config startup-config` : sauvegarde la configuration actuelle dans la **Startup-config**  
+  
+## :eight: Lab  
+
+<img width="467" height="331" alt="image" src="https://github.com/user-attachments/assets/e5d1df53-d622-4406-9180-75124a8daa99" />
+    
+# 🅰️ Consignes  
+  
+1 - Changer le nom d'hôte du routeur et du switch en "R1" et "SW1"  
+
+2 - Configurer un mot de passe "CCNA" non encrypté sur les deux appareils  
+
+3 - Retourner en **User Executive Mode** et tester le mot de passe  
+
+4 - Vérifier le mot de passe dans la running config  
+
+5 - S'assurer que le mot de passe actuel ainsi que tous les futurs mots de passe sont ou seront encryptés  
+
+6 - Vérifier le mot de passe dans la running config  
+
+7 - Configurer un mot de passe encrypté plus sécurisé. Le mot de passe à configurer est "Cisco"  
+
+8 - Retourner en **User Executive Mode** et repasser en **Privileged Exec Mode**. Quel mot de passe est demandé?  
+
+9 - Vérifier les mots de passe dans la running config. Quel numéro de type d'encryptage est utilisé pour enable password? Quel numéro de type d'encryptage est utilisé pour enable secret?  
+
+10 - Sauvegarder la running config dans la startup config  
+
+# 🅱️ Résultats  
+
+Les manipulations suivantes sont effectuées sur les deux appareils mais nous allons répondre seulement sur le Routeur, les résultats étant identiques sur les deux appareils.      
+  
+1 - <img width="198" height="25" alt="image" src="https://github.com/user-attachments/assets/abfa4e72-6bc6-4f28-9df0-09fea5ffefc1" />  
+___________________________________________
+
+2 - <img width="228" height="26" alt="image" src="https://github.com/user-attachments/assets/6c1e7ef5-38b7-4677-8f15-93ad91822d52" />  
+___________________________________________
+
+3 - <img width="111" height="38" alt="image" src="https://github.com/user-attachments/assets/e139541b-476a-4af0-8a2e-522a7f9ba68a" />  
+___________________________________________
+
+4 - <img width="313" height="312" alt="image" src="https://github.com/user-attachments/assets/f085340b-adc9-4413-a8de-4f08d5f7727d" />  
+___________________________________________  
+
+5 - <img width="270" height="26" alt="image" src="https://github.com/user-attachments/assets/a4e66f64-8e07-4671-bb28-ffce4d99c648" />  
+___________________________________________  
+
+6 - <img width="306" height="194" alt="image" src="https://github.com/user-attachments/assets/d1ef0c69-553f-40d2-ad4b-b83403c54aad" />  
+___________________________________________  
+
+7 - <img width="216" height="30" alt="image" src="https://github.com/user-attachments/assets/99a527af-71c7-4d0d-ad83-31c210cfe666" />  
+___________________________________________  
+
+8 - Pour retourner en **User Executive Mode**, taper la commande `exit` deux fois de suite. Ensuite, pour repasser en **Privileged Exec Mode** taper la commande `enable`  
+
+<img width="102" height="39" alt="image" src="https://github.com/user-attachments/assets/72d562fc-b930-4493-afa4-ec5630ab2ab4" />  
+
+Le mot de passe utilisé est "Cisco" et non "CCNA".  
+___________________________________________  
+
+9 - Le numéro de type d'encryptage utilisé pour enable password est 7. Le numéro de type d'encryptage utilisé pour enable secret est 5. Ce sont deux modes d'encryptage differénts, le 5 étant plus performant que le 7.   
+
+<img width="357" height="211" alt="image" src="https://github.com/user-attachments/assets/5fcd7073-0503-4e5a-a0af-544dac92b31c" />  
+  
+___________________________________________  
+  
+10 - <img width="207" height="51" alt="image" src="https://github.com/user-attachments/assets/3a91427e-234f-4b82-bdc2-ed0540f28e51" />  
 
 
+  
+  
+ 
+  
+  
+  
+  
+  
+   
+
+  
 
   
