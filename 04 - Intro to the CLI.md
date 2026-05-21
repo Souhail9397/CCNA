@@ -75,13 +75,29 @@ Pour voir la **Running-config**, on tape la commande `show running-config` dans 
   
 Pour enregistrer la configuration actuelle dans la **Startup-config**, on a le choix entre trois commandes : `write`, `write memory`, `copy running-config startup-config`.  
    
-## :seven: Résumé  
-
+## :seven: A retenir    
+  
 ⚙️ **Modes d'utilisation**  
 
-➡️ Router[>] : User Exec Mode  
-➡️ Router [#] : Privileged Exec Mode
+➡️ Router[>] : **User Exec Mode**  
+➡️ Router [#] : **Privileged Exec Mode**  
+➡️ Router[(config)#] : **Global Configuration Mode**  
 
-⌨️  
+⌨️ **Commandes**  
+
+➡️ Router>`enable` : entrer en **Privileged Exec Mode**  
+➡️ Router#`configure terminal` : entrer en **Global Configuration Mode**  
+➡️ Router(config)#`enable password` *MotDePasseDeVotreChoix* : configurer un mot de passe pour protéger l'accès au **Privileged Exec Mode**  
+➡️ Router(config)#`service password-encryption` : encrypte le mot de passe actuelle (et les futurs mots de passe)  
+➡️ Router(config)#`enable secret` *MotDePasseDeVotreChoix* : configure un mot de passe avec un mode d'encryptage plus sécurisé  
+➡️ Router(config)#`run` *CommandeDuModePrivileged* : exécute une commande du **Privileged Exec Mode** à partir du **Global Configuration Mode**  
+➡️ Router(config)#`no` *Commande* : annule une commande tapée précédemment  
+➡️ Router(config)#`show running-config`: affiche la configuration active  
+➡️ Router(config)#`show startup-config` : affiche le fichier de configuration qui sera chargé si l'appareil est redemarré  
+➡️ Router(config)#`write` : sauvegarde la configuration actuelle dans la **Startup-config**  
+➡️ Router(config)#`write memory` : sauvegarde la configuration actuelle dans la **Startup-config**  
+➡️ Router(config)#`copy running-config startup-config` : sauvegarde la configuration actuelle dans la **Startup-config**  
+
+
 
   
