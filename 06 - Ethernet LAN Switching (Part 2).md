@@ -105,6 +105,26 @@ Wireshark est un puissant outil indispensable à l'analyse des paquets qui circu
 - `clear mac address-table dynamic` : supprime toutes les adresses MAC dynamiques  
 - `clear mac address-table dynamic address [adresse:mac:à:supprimer]` : supprime une adresse MAC dynamique ciblée  
 - `clear mac address-table dynamic interface [interface/à/supprimer]` : supprime toutes les adresse MAC dynamiques liée à une interface  
+
+## :four: Lab  
+
+### 🅰️ Consignes  
+
+*Les deux switchs ont une table d'adresses MAC vide, et tous les PCs ont une table ARP vide*  
+
+**1 - Si PC1 ping PC3, quels messages seront envoyées sur le réseau, et quels appareils les recevront?**    
+
+**2 - Envoyez un ping et utilisez le mode simulation de Packet Tracer pour vérifier votre réponse**  
+
+**3 - Utilisez la fonction ping pour générer du trafic réseau et faites apprendre aux switchs les adresses MAC de tous les PCs du réseau**
+
+**4 - Utilisez les commandes `show` sur les switchs pour identifier l'adresse MAC de chaque PC**  
+
+**5 - Videz les adresses MAC dynamiques de la table d'adresses MAC sur chaque switch**  
+
+### 🅱️ Réponses  
+
+1 -   
   
 
   
