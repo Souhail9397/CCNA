@@ -34,7 +34,7 @@ Prenons le cas de PC1 qui envoie de la donnée à PC3 :
 ➡️ **PC2** reçoit la frame et l'ignore car son adresse IP ne correspond pas à celle de destination.  
 
 ➡️ **Switch2** reçoit la frame (nouvelle ligne table adresses MAC : MAC .9D00 | Interface G0/2) et l'envoie sur ses interfaces G0/0 (**PC3**) et G0/1 (**PC4**). **C4** l'ignore car son adresse IP ne correspond pas, et **PC3** la reçoit et ne l'ignore pas car son adresse IP correspond.  
-
+  
 ➡️ A ce moment, **PC3** envoie la **Réponse ARP** à **PC1**.  
 
 ### 📨 Réponse ARP  
@@ -53,6 +53,38 @@ Prenons le cas de PC1 qui envoie de la donnée à PC3 :
 
 Pour consulter la **Table ARP** d'un PC, on tape la commande `arp -a` dans un terminal (fonctionne sur Windows, MacOS, Linux). Voici à quoi ressemble une **Table ARP** :  
 
-<img width="462" height="234" alt="image" src="https://github.com/user-attachments/assets/e543e248-e5b1-45d1-a5ca-44b47ad67579" />
+<img width="462" height="234" alt="image" src="https://github.com/user-attachments/assets/e543e248-e5b1-45d1-a5ca-44b47ad67579" />  
+
+➡️ Adresse Internet : adresse IP  
+
+➡️ Adresse physique : adresse MAC  
+
+➡️ Type "statique" : entrée par défaut  
+
+➡️ Type "dynamique" : apprise par **ARP**  
+
+## :three: Le ping  
+
+Le **ping** est un outil réseau utilisé pour tester la connectivité entre deux machines. Il mesure le temps de communication aller-retour (ex : entre **PC1** et **PC3**). Comme **ARP**, le **ping** utilise deux messages : **ICMP Echo Request** et **ICMP Echo Reply**.  
+Par contre, contrairement à la **Requête ARP**, **ICMP Echo Request** ne sera pas broadcast sur le réseau. **ICMP Echo Request** est envoyé à un hôte spécifique dont l'adresse MAC est déjà connue par le PC initiant le **ping**.  
+
+Pour ping, on utilise simplement la commande `ping [adresse.ip]`. Voyons le processus de **ping** en détail (sur un terminal Cisco) :  
+
+<img width="1213" height="263" alt="image" src="https://github.com/user-attachments/assets/adf3126a-7bb1-47a6-9114-d2f84855f8fd" />  
+
+➡️ `ping 192.168.1.3` : **PC1** envoie une **ICMP Echo Request** (**ping**) à **PC3**  
+
+➡️ `Sending 5, 100-byte ICMP Echos to 192.168.1.3` : par défaut, un **ping** sur Cisco IOS envoie 5 **ICMP Echo Request**, et on reçoit 5 **ICMP Echo Reply**. La taille par défaut de chaque **ping** est de 100 bytes.  
+
+➡️ `.!!!!` : **.** signifie un ping échoué et **!** signifie un ping réussi  
+
+➡️ `Success rate is 80 percent (4/5), round-trip min/avg/max = 20/20/22 ms` : 4 pings sur 5 ont réussi, soit un pourcentage de 80%. Le temps aller retour minimum, moyen et maximum est respectivement de 20, 20, 22 millisecondes.  
+
+  ⁉️ 
+  
+
+  
+
+  
 
   
