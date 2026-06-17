@@ -94,7 +94,16 @@ Wireshark est un puissant outil indispensable à l'analyse des paquets qui circu
 ➡️ **Ligne 3** : **PC3** répond avec une **Réponse ARP**, en disant à **PC1** que *192.168.1.3 is at 0c:2f:b0:6a:39:00*  
 ➡️ **Ligne 4** : **PC1** ping en envoyant une **ICMP Echo Request** à **PC3**  
 ➡️ **Ligne 5** : **PC3** répond à **PC1** avec une **ICMP Echo Reply**  
-➡️ **Ligne 6 à 11** : 3 **ICMP Echo Request** et 3 **ICMP Echo Reply** supplémentaires, jusqu'à en totaliser 4/5
+➡️ **Ligne 6 à 11** : 3 **ICMP Echo Request** et 3 **ICMP Echo Reply** supplémentaires, jusqu'à en totaliser 4/5  
+
+### 🧠 Commandes à retenir sur appareils Cisco (switchs, routeurs)  
+
+- `show arp` : affiche la table ARP  
+- `show mac address-table` : affiche la table d'adresses MAC  
+- `clear mac address-table dynamic` : supprime toutes les adresses MAC dynamiques  
+- `clear mac address-table dynamic address [adresse:mac:à:supprimer]` : supprime une adresse MAC dynamique ciblée  
+- `clear mac address-table dynamic interface [interface/à/supprimer]` : supprime une adresse MAC liée à une interface  
+  
 
   
   
