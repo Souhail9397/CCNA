@@ -1,1 +1,58 @@
-## Introduction
+## :one: Introduction  
+
+Pour ce cours, nous allons nous appuyer sur le schéma suivant :  
+  
+<img width="1889" height="453" alt="image" src="https://github.com/user-attachments/assets/ad474bf5-7dfd-4a4b-8450-3674567dae0b" />  
+
+  
+## :two: Switching LAN Ethernet  
+  
+Prenons le cas de PC1 qui envoie de la donnée à PC3 :  
+- Source IP : 192.168.1.1  
+- Destination IP : 192.168.1.3  
+- Source MAC : .9D00  
+- Destination MAC : ?  
+
+**PC1** veut envoyer de la donnée à **PC3**, mais il doit dans un premier temps découvrir l'adresse MAC de **PC3**. Pour ce faire, il utilie un protocole appelé **ARP** (Address Resolution Protocol).  
+
+**ARP** est utilisé pour découvrir l'adresse de **couche 2 (adresse MAC)** d'une adresse de **couche 3 connue (adresse IP**). Le processus **ARP** se fait en deux temps : une **Requête ARP** puis une **Réponse ARP**. Dans notre cas, **PC1** envoie la requête et **PC3** envoie la réponse. La **Requête ARP** est en **broadcast**, c'est-à-dire qu'elle est envoyée à tous les hôtes sur le réseau. La **Réponse ARP** est **unicast**, c'est-à-dire envoyée à seulement un hôte, celui qui envoie la requête.   
+  
+### 📢 Requête ARP  
+  
+***PC1** veut envoyer de la donnée à **PC3***  
+
+➡️ PC1 envoie une **Requête ARP** :  
+- Source IP : 192.168.1.1  
+- Destination IP : 192.168.1.3  
+- Source MAC : 0C2F.B011.9D00  
+- Destination MAC : **FFFF.FFFF.FFFF** = broadcast MAC adresse, l'adresse MAC de destination utilisée lorsqu'un hôte veut envoyer une frame à tous les autres hôtes du réseau  
+
+➡️ **Switch1** reçoit la **Requête ARP** et enregistre l'adresse MAC de **PC1** dans sa table d'adresses MAC. C'est une adresse MAC dynamique et sera supprimée après 5min d'inactivité (nouvelle ligne : MAC .9D00 | Interface G0/0)  
+
+➡️ Étant donné que l'adresse MAC de destination est une adresse broadcast, **Switch1** envoie la **Requête ARP** à toutes ses interfaces sauf celle sur laquelle il a reçu la requête.  
+
+➡️ **PC2** reçoit la frame et l'ignore car son adresse IP ne correspond pas à celle de destination.  
+
+➡️ **Switch2** reçoit la frame (nouvelle ligne table adresses MAC : MAC .9D00 | Interface G0/2) et l'envoie sur ses interfaces G0/0 (**PC3**) et G0/1 (**PC4**). **C4** l'ignore car son adresse IP ne correspond pas, et **PC3** la reçoit et ne l'ignore pas car son adresse IP correspond.  
+
+➡️ A ce moment, **PC3** envoie la **Réponse ARP** à **PC1**.  
+
+### 📨 Réponse ARP  
+
+***PC3** répond à **PC1** avec une **Réponse ARP***  
+
+➡️ **Switch2** reçoit la **Réponse ARP** et enregistre l'adresse MAC de **PC3** dans sa table d'adresses MAC (nouvelle ligne : MAC .3900 | Interface G0/0). **Switch2** envoie la frame à **Switch1**  
+
+➡️ Ici, la **Réponse ARP** est une **known unicast frame** car l'adresse MAC du destinataire (**PC1**) est connue dans la table d'adresse MAC de **Switch2**. De ce fait, la frame ne sera pas flood sur toutes les interfaces.  
+
+➡️ **Switch1** reçoit la frame et consulte sa table d'adresses MAC. L'adresse MAC de destination (**PC1**) est enregistrée, alors **Switch1** envoie la frame directement à **PC1**, sans flood.  
+
+➡️ **PC1** utilise les informations contenues dans la **Réponse ARP** pour enregistrer PC3 dans sa **Table ARP**    
+
+### 📋 Table ARP  
+
+Pour consulter la **Table ARP** d'un PC, on tape la commande `arp -a` dans un terminal (fonctionne sur Windows, MacOS, Linux). Voici à quoi ressemble une **Table ARP** :  
+
+<img width="462" height="234" alt="image" src="https://github.com/user-attachments/assets/e543e248-e5b1-45d1-a5ca-44b47ad67579" />
+
+  
