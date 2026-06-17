@@ -112,19 +112,72 @@ Wireshark est un puissant outil indispensable à l'analyse des paquets qui circu
 
 *Les deux switchs ont une table d'adresses MAC vide, et tous les PCs ont une table ARP vide*  
 
-**1 - Si PC1 ping PC3, quels messages seront envoyées sur le réseau, et quels appareils les recevront?**    
+**1. Si PC1 ping PC3, quels messages seront envoyées sur le réseau, et quels appareils les recevront?**    
 
-**2 - Envoyez un ping et utilisez le mode simulation de Packet Tracer pour vérifier votre réponse**  
+**2. Envoyez un ping et utilisez le mode simulation de Packet Tracer pour vérifier votre réponse**  
 
-**3 - Utilisez la fonction ping pour générer du trafic réseau et faites apprendre aux switchs les adresses MAC de tous les PCs du réseau**
+**3. Utilisez la fonction ping pour générer du trafic réseau et faites apprendre aux switchs les adresses MAC de tous les PCs du réseau**
 
-**4 - Utilisez les commandes `show` sur les switchs pour identifier l'adresse MAC de chaque PC**  
+**4. Utilisez les commandes `show` sur les switchs pour identifier l'adresse MAC de chaque PC**  
 
-**5 - Videz les adresses MAC dynamiques de la table d'adresses MAC sur chaque switch**  
+**5. Videz les adresses MAC dynamiques de la table d'adresses MAC sur chaque switch**  
 
 ### 🅱️ Réponses  
 
-1 -   
+**1.** Si PC1 ping PC3, les messages envoyés sur le réseau seront : **ARP Request** -> **ARP Reply** -> **ICMP Echo Request** -> **ICMP Echo Reply**.  
+- **ARP Request** sera reçu par PC2, PC3 et PC4.  
+- **ARP Reply** sera reçu par PC1  
+- **ICMP Echo Request** sera reçu par PC3  
+- **ICMP Echo Reply** sera reçu par PC1  
+
+**2.**  Capture de la commande `ping 192.168.1.3`  
+  
+<img width="408" height="213" alt="image" src="https://github.com/user-attachments/assets/833ebc9e-9c8d-4baa-87c7-8e77047b99c1" />  
+
+Capture du mode simulation de Cisco Packet Tracer, avec les PC recevant chaque paquet    
+   
+<img width="307" height="471" alt="image" src="https://github.com/user-attachments/assets/fb7d0e4b-9d90-42e0-9f61-d84a4ef59e55" />  
+ 
+**3.** Pour faire connaître aux switchs les adresses MAC de tous les PCs du réseau, il faut qu'ils reçoivent des paquets envoyés par chaque appareil. Nous allons utiliser la commande `ping` pour que chaque switch reçoive du **ICMP Echo Request** et **ICMP Echo Reply**, et puisse enregistrer les adresses MAC sources de chaque **ICMP Echo Request/Reply**. On quitte le mode simulation de Cisco Packet Tracer pour envoyer les pings nécessaires.  
+
+Avec le ping de PC1 vers PC3 fait à la réponse 2, Switch1 connaît déjà l'adresse MAC de PC1 et celle de PC3. Switch2 connaît aussi l'adresse MAC de PC1 et de PC3. Maintenant, Switch1 et Switch2 doivent apprendre l'adresse MAC de PC2 et PC4.  
+
+➡️ Ping PC1 vers PC4 : Switch1 et Switch2 apprennent l'adresse MAC de PC4  
+
+<img width="408" height="176" alt="image" src="https://github.com/user-attachments/assets/7981e51c-bc65-40f7-9702-fbe8aa3df8e2" />  
+
+➡️ Ping PC2 vers PC3 : Switch1 et Switch2 apprennent l'adresse MAC de PC2  
+
+<img width="404" height="176" alt="image" src="https://github.com/user-attachments/assets/ec924a2d-e1e1-4cd7-a84f-4703c226e3e3" />  
+
+**4.** Pour consulter la table d'adresses MAC des Switchs, on utilise la commande `show mac address-table`. Mais d'abord, il faut se connecter au Switch avec la commande `en`  
+
+**Switch1** :  
+
+<img width="328" height="152" alt="image" src="https://github.com/user-attachments/assets/ddcbd7a5-3c7b-47d4-8723-29a33158ed9a" />  
+
+**Switch2** :   
+  
+<img width="317" height="167" alt="image" src="https://github.com/user-attachments/assets/49caeb3c-269a-49a4-b31b-577adbb2e4c3" />  
+
+En se basant sur la table d'adresses MAC de Switch1 :    
+  
+➡️ Adresse MAC PC1 : interface Fa0/1 : 00d0.d3ad.9cab  
+➡️ Adresse MAC PC2 : interface Fa0/2 : 0060.5c56.14d3  
+
+En se basant sur la table d'adresses MAC de Switch2 :  
+   
+➡️ Adresse MAC PC3 : interface Fa0/1 : 0004.9a6e.d870  
+➡️ Adresse MAC PC4 : interface Fa0/2 : 0001.647b.3119  
+
+**5.** Pour vider les adresses MAC de la table d'adresse MAC de chaque Switch, on tape la commande `clear mac address-table dynamic` sur les deux Switchs :   
+
+<img width="338" height="259" alt="image" src="https://github.com/user-attachments/assets/573cd4bb-80d9-40d9-b324-cecc865713c7" />  
+  
+  
+  
+
+  
   
 
   
