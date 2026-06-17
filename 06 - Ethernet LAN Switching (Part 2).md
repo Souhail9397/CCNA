@@ -104,7 +104,7 @@ Wireshark est un puissant outil indispensable à l'analyse des paquets qui circu
 - `show mac address-table` : affiche la table d'adresses MAC  
 - `clear mac address-table dynamic` : supprime toutes les adresses MAC dynamiques  
 - `clear mac address-table dynamic address [adresse:mac:à:supprimer]` : supprime une adresse MAC dynamique ciblée  
-- `clear mac address-table dynamic interface [interface/à/supprimer]` : supprime une adresse MAC liée à une interface  
+- `clear mac address-table dynamic interface [interface/à/supprimer]` : supprime toutes les adresse MAC dynamiques liée à une interface  
   
 
   
