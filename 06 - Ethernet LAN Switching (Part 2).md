@@ -162,13 +162,13 @@ Avec le ping de PC1 vers PC3 fait à la réponse 2, Switch1 connaît déjà l'ad
 
 En se basant sur la table d'adresses MAC de Switch1 :    
   
-➡️ Adresse MAC PC1 : interface Fa0/1 : 00d0.d3ad.9cab  
-➡️ Adresse MAC PC2 : interface Fa0/2 : 0060.5c56.14d3  
+➡️ **Adresse MAC PC1** : *interface Fa0/1* : 00d0.d3ad.9cab  
+➡️ **Adresse MAC PC2** : *interface Fa0/2* : 0060.5c56.14d3  
 
 En se basant sur la table d'adresses MAC de Switch2 :  
    
-➡️ Adresse MAC PC3 : interface Fa0/1 : 0004.9a6e.d870  
-➡️ Adresse MAC PC4 : interface Fa0/2 : 0001.647b.3119  
+➡️ **Adresse MAC PC3** : *interface Fa0/1* : 0004.9a6e.d870  
+➡️ **Adresse MAC PC4** : *interface Fa0/2* : 0001.647b.3119  
 
 **5.** Pour vider les adresses MAC de la table d'adresse MAC de chaque Switch, on tape la commande `clear mac address-table dynamic` sur les deux Switchs :   
 
