@@ -8,10 +8,10 @@ Pour ce cours, nous allons nous appuyer sur le schéma suivant :
 ## :two: Switching LAN Ethernet  
   
 Prenons le cas de PC1 qui envoie de la donnée à PC3 :  
-- Source IP : 192.168.1.1  
-- Destination IP : 192.168.1.3  
-- Source MAC : .9D00  
-- Destination MAC : ?  
+- **Source IP** : 192.168.1.1  
+- **Destination IP** : 192.168.1.3  
+- **Source MAC** : .9D00  
+- **Destination MAC** : ?  
 
 **PC1** veut envoyer de la donnée à **PC3**, mais il doit dans un premier temps découvrir l'adresse MAC de **PC3**. Pour ce faire, il utilie un protocole appelé **ARP** (Address Resolution Protocol).  
 
@@ -22,10 +22,10 @@ Prenons le cas de PC1 qui envoie de la donnée à PC3 :
 ***PC1** veut envoyer de la donnée à **PC3***  
 
 ➡️ PC1 envoie une **Requête ARP** :  
-- Source IP : 192.168.1.1  
-- Destination IP : 192.168.1.3  
-- Source MAC : 0C2F.B011.9D00  
-- Destination MAC : **FFFF.FFFF.FFFF** = broadcast MAC adresse, l'adresse MAC de destination utilisée lorsqu'un hôte veut envoyer une frame à tous les autres hôtes du réseau  
+- **Source IP** : 192.168.1.1  
+- **Destination IP** : 192.168.1.3  
+- **Source MAC** : 0C2F.B011.9D00  
+- **Destination MAC** : FFFF.FFFF.FFFF = broadcast MAC adresse, l'adresse MAC de destination utilisée lorsqu'un hôte veut envoyer une frame à tous les autres hôtes du réseau  
 
 ➡️ **Switch1** reçoit la **Requête ARP** et enregistre l'adresse MAC de **PC1** dans sa table d'adresses MAC. C'est une adresse MAC dynamique et sera supprimée après 5min d'inactivité (nouvelle ligne : MAC .9D00 | Interface G0/0)  
 
@@ -80,7 +80,24 @@ Pour ping, on utilise simplement la commande `ping [adresse.ip]`. Voyons le proc
 
 ➡️ `Success rate is 80 percent (4/5), round-trip min/avg/max = 20/20/22 ms` : 4 pings sur 5 ont réussi, soit un pourcentage de 80%. Le temps aller retour minimum, moyen et maximum est respectivement de 20, 20, 22 millisecondes.  
 
-  ⁉️ 
+🤔 **Pourquoi y'a-t-il eu un échec de ping sur les 5 *ICMP Echo Request*** ?  
+
+💡 C'est parce que **PC1** ne connaissait pas l'adresse MAC de **PC3**. En initiant le **ping**, **PC1** a vu que l'adresse MAC de **PC3** lui était inconnu, et a donc envoyé une **Requête ARP**. Le **.** précédant les 4 **!** correspond donc à la **Requête ARP**. Une fois que **PC3** a reçu la **Requête ARP**, il a envoyé une **Réponse ARP** à **PC1**, et les prochaines **ICMP Echo Request** ont correctement abouti.   
+
+### 🦈 Analyse d'un ping sur Wireshark  
+
+Wireshark est un puissant outil indispensable à l'analyse des paquets qui circulent sur un réseau. Nous allons étudier une capture Wireshark du **ping** entre **PC1** et **PC3**  
+
+<img width="1330" height="518" alt="image" src="https://github.com/user-attachments/assets/a26b52ae-17ff-41a3-8c52-8299ee4b4af2" />  
+
+➡️ **Ligne 2** : **PC1** envoie la **Requête ARP** en demandant *Who has 192.168.1.3 (adresse IP de **PC3**)? Tell 192.168.1.1 (adresse IP de **PC1**)*  
+➡️ **Ligne 3** : **PC3** répond avec une **Réponse ARP**, en disant à **PC1** que *192.168.1.3 is at 0c:2f:b0:6a:39:00*  
+➡️ **Ligne 4** : **PC1** ping en envoyant une **ICMP Echo Request** à **PC3**  
+➡️ **Ligne 5** : **PC3** répond à **PC1** avec une **ICMP Echo Reply**  
+➡️ **Ligne 6 à 11** : 3 **ICMP Echo Request** et 3 **ICMP Echo Reply** supplémentaires, jusqu'à en totaliser 4/5
+
+  
+  
   
 
   
