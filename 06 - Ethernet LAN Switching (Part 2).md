@@ -1,6 +1,8 @@
 ## :one: Introduction  
 
-Pour ce cours, nous allons nous appuyer sur le schéma suivant :  
+Dans ce cours nous allons aborder les notions de **ARP** avec **Requête ARP** et **Réponse ARP**, les **Tables ARP**, la fonction de **ping** avec **ICMP Echo Request** et **ICMP Echo Reply**, et les **Tables d'adresses MAC**  
+
+Nous allons nous appuyer sur le schéma suivant :  
   
 <img width="1889" height="453" alt="image" src="https://github.com/user-attachments/assets/ad474bf5-7dfd-4a4b-8450-3674567dae0b" />  
 
