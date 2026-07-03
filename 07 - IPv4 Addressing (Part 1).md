@@ -88,6 +88,31 @@ Si les 24 premiers bits représentent la partie réseau, alors la partie réseau
 
 Pour ce qui est de la partie hôte, c'est simple : les bits restants représentent la partie hôte. Donc 32 bits - 24 bits = 8 bits. Les 8 derniers bits, soit le dernier octet complet, correspond à la partie hôte. Dans notre cas, 192.168.1.254/24 correspond à un hôte du réseau 192.168.1.0/24. Les adresses IP disponibles pour ce réseau vont de 192.168.1.1/24 à 192.168.1.254/24. Il y a toujours deux adresses IP réservées dans un réseau : la première, ici 192.168.1.0/24, qui est l'adresse réseau, et la dernière, 192.168.1.255/24, qui est l'adresse broadcast. Il est impossible de les attribuer à des hôtes, et cela vaut pour tous les réseaux.
 
+## 📚 Classes d'adresses IPv4  
+  
+Les adresses IPv4 sont séparées en 5 classes différentes. Les classes sont déterminées par le premier octet d'une adresse.  
+
+- Classe A : Premier octet 0xxxxxx, étendue du premier octet : 0-127  
+- Classe B : Premier octet 10xxxxxx, étendue du premier octet : 128-191  
+- Classe C : Premier octet 110xxxxx, étendue du premier octet : 192-223  
+- Classe D : Premier octet 1110xxxx, étendue du premier octet : 224-239  
+- Classe E : Premier octet 1111xxxx, étendue du premier octet 240-255  
+   
+Les classes d'adresses sur lesquelles nous allons nous concentrer sont les A B et C. Les classes D sont reservées pour les adresses **multicast** et les classes E sont reservées pour des usages experimentaux.  
+
+Les adresses de classe A ont un **prefix length** (taille du champ réseau) de /8, classe B /16 et classe C /24. Voici des exemples d'adresses IP par classe :  
+  
+- Classe A : **12**.128.254.23 **/8**  
+- Classe B : **154.78**.111.32 **/16**  
+- Classe C : **192.168.1**.254 **/24**  
+  
+## 🔄 Loopback Address
+  
+Une adresse loopback est une adresse IP qui permet à un appareil de communiquer avec lui-même. Elles sont comprises dans la plage d'adresses IP 127.0.0.0/8 et la plus connue est 127.0.0.1 (localhost).  
+
+On les utilise pour tester la pile TCP/IP, vérifier que le réseau local de la machine fonctionne, ou encore que les paquets ne quittent jamais l'appareil. Donc en réalité, les adresses de classe A ont pour premier octet 0-126, 127 étant reservé pour les adresses loopback. 
+
+
 
   
   
