@@ -161,8 +161,125 @@ Vu qu'on n'a seulement configuré l'interface **GigabitEthernet0/0**, il n'y a d
 ➡️ `show interfaces description` : cette commande affiche un résumé de toutes les interfaces. On y retrouve le nom de l'interface, le status (couche 1), le protocol couche 2) , la description (si on en a configuré une). Cette commande est très pratique sur un routeur ou un switch qui possède beaucoup d'interfaces. En un coup d'œil, on voit quelles interfaces sont actives et à quoi elles servent.  
 
 ➡️ `do sh int desc` : montre les descriptions des interfaces   
+
+# :six: Lab  
+
+## 🅰️ Consignes  
+
+**1 -** Configurer le hostname de R1  
+
+**2 -** Utiliser une commande "show" pour voir la liste de toutes les interfaces de R1, leurs adresses IP, status etc...  
+
+**3 -** Configurer la bonne adresse IP sur chaque interface de R1, et activer les interfaces. Configurer les bonnes descriptions sur chaque interface  
+
+**4 -** Utiliser une commande "show" pour vérifier de nouveau les interfaces de R1  
+
+**5 -** Consulter la running config pour confirmer les modifications de configuration, et sauvegarder la configuration  
+
+**6 -** Configurer l'adresse IP de PC1, PC2 et PC3  
+
+**7 -** Pinguer de PC1 vers PC2 et PC3 pour tester la connectivité  
+
+## 🅱️ Résultats  
+
+**1 -**  
+  
+- `en`  
+- `conf t`  
+- `hostname R1`  
+  
+<img width="464" height="63" alt="image" src="https://github.com/user-attachments/assets/5c553927-b42e-471c-a231-24d0c28d3465" />
+
+
+**2 -**   
+  
+`do sh ip int br`  
+  
+<img width="576" height="89" alt="image" src="https://github.com/user-attachments/assets/7ef71cc6-8bea-4fa5-a3bb-92bc7552203d" />   
+   
+**3 -**  
+  
+➡️ **Interface GigabitEthernet 0/0** :  
+  
+- `in g0/0`  
+- `ip add 15.255.255.254 255.0.0.0`  
+- `no sh`  
+- `description ## to SW1 ##` 
+   
+<img width="658" height="143" alt="image" src="https://github.com/user-attachments/assets/554516ae-7d1f-4e06-9c83-c18db69cad53" />   
+
+➡️ **Interface GigabitEthernet 0/1** :  
+    
+- `exit`  
+- `in g0/1`  
+- `ip add 182.98.255.254 255.255.0.0`  
+- `no sh`  
+- `description ## to SW2 ##`  
+  
+<img width="641" height="156" alt="image" src="https://github.com/user-attachments/assets/ec234098-182b-47df-9fcb-f17c58e92e96" />   
+
+➡️ **Interface GigabitEthernet 0/2** :    
+  
+- `exit`
+- `in g0/2`
+- `ip add 201.191.20.254 255.255.255.0`  
+- `no sh`  
+- `description ## to SW3 ##`  
+  
+<img width="667" height="154" alt="image" src="https://github.com/user-attachments/assets/d058c591-8f89-4b3b-b637-5f53d084a240" />  
+  
+**4 -**  
+  
+Taper la commande `do sh ip int br`  
+  
+<img width="631" height="93" alt="image" src="https://github.com/user-attachments/assets/1ecd8e4c-3281-452e-804f-4261f74540c3" />
+  
+Les adresses IP des interfaces que nous avons configurées ont bien été prises en compte, le status des interfaces est passé en "up" suite aux commandes "no sh", et le protocol est aussi passé en "up" pour toutes les interfaces, donc tout devrait fonctionner correctement.  
+  
+**5 -**  
+  
+- Pour voir la running config : `do sh running-config`  
+  
+<img width="427" height="284" alt="image" src="https://github.com/user-attachments/assets/62e624db-d6e9-4c4f-b3cc-bd0e6ec99905" />  
+<img width="624" height="337" alt="image" src="https://github.com/user-attachments/assets/bd759b39-758f-487f-8450-f4b911ae81b4" />  
+  
+- Pour sauvegarder la configuration actuelle : `do write`  
+  
+<img width="244" height="52" alt="image" src="https://github.com/user-attachments/assets/ed84096e-3e52-41f2-baa2-5545b31c892d" />  
+  
+**6 -**   
+  
+Pour configurer les adresses IP sur les PCs, on clique sur le PC puis on se rend dans l'onglet **Config**. Ensuite, on clique sur **FastEthernet0** situé dans la colonne à gauche de la fenêtre, et on a le champ de configuration d'adresse IPv4 et IPv6. Pour cet exercice, on se concentre sur l'IPv4.  
+  
+➡️ **PC1** :  
+  
+<img width="578" height="96" alt="image" src="https://github.com/user-attachments/assets/4864221f-b7b2-4cec-8acc-471d90dfbaf6" />  
+
+➡️ **PC2** :  
+  
+<img width="578" height="97" alt="image" src="https://github.com/user-attachments/assets/6643dd22-9f27-4288-b3d1-1ab97b6a78ac" />  
+
+➡️ **PC3** :  
+  
+<img width="582" height="96" alt="image" src="https://github.com/user-attachments/assets/b83d35d0-85d8-45e7-82f4-f626e2b335da" />
+  
+**7 -**  
+
+➡️ **Ping de PC1 vers PC2 : ✅**  
+
+<img width="414" height="209" alt="image" src="https://github.com/user-attachments/assets/f5e75214-a9a3-4198-9fd2-890858b6b9ea" />
+  
+➡️ **Ping de PC1 vers PC3 : ✅**  
+  
+<img width="432" height="200" alt="image" src="https://github.com/user-attachments/assets/574d7e35-1c5b-47a7-b513-6e4e3b4bddb0" />  
+
   
   
+
+  
+
+  
+
   
   
   
