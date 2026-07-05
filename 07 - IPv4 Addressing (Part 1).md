@@ -106,6 +106,18 @@ Les adresses de classe A ont un **prefix length** (taille du champ réseau) de /
 - Classe B : **154.78**.111.32 **/16**  
 - Classe C : **192.168.1**.254 **/24**  
   
+## 📊 Nombre de réseaux et d'adresses par classe
+
+Dans l'ancien système d'adressage IPv4 (classful), les premiers bits de l'adresse servent à identifier sa classe (A, B ou C). Ces bits sont réservés et ne peuvent donc pas être utilisés pour numéroter les réseaux.
+
+- **Classe A** : le premier bit est toujours `0`. Il reste donc **7 bits** pour identifier les réseaux → **2⁷ = 128 réseaux**. Les **24 bits restants** sont utilisés pour les hôtes → **2²⁴ = 16 777 216 adresses** par réseau.
+
+- **Classe B** : les deux premiers bits sont toujours `10`. Il reste **14 bits** pour les réseaux → **2¹⁴ = 16 384 réseaux**. Les **16 bits restants** sont utilisés pour les hôtes → **2¹⁶ = 65 536 adresses** par réseau.
+
+- **Classe C** : les trois premiers bits sont toujours `110`. Il reste **21 bits** pour les réseaux → **2²¹ = 2 097 152 réseaux**. Les **8 bits restants** sont utilisés pour les hôtes → **2⁸ = 256 adresses** par réseau.
+
+> **Remarque :** aujourd'hui, ce système de classes est principalement historique. Les réseaux modernes utilisent le **CIDR (Classless Inter-Domain Routing)**, qui permet d'utiliser n'importe quelle longueur de préfixe (ex. `/19`, `/27`, `/30`).  
+  
 ## 🔄 Loopback Address
   
 Une adresse loopback est une adresse IP qui permet à un appareil de communiquer avec lui-même. Elles sont comprises dans la plage d'adresses IP 127.0.0.0/8 et la plus connue est 127.0.0.1 (localhost).  
