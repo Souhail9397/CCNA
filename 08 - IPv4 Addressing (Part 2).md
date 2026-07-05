@@ -73,6 +73,39 @@ On voit :
 ➡️ **3 switchs** : **SW1** pour le LAN 1, **SW2** pour le LAN 2, **SW3** pour le LAN 3  
 
 ➡️ **3 PCs** : **PC1** (10.0.0.1) pour le LAN 1, **PC2** (172.16.0.1) pour le LAN 2, **PC3** (192.168.0.0) pour le LAN 3  
+    
+💬 **Remarque** : les 3 PCs ont chacun la première adresse utilisable dans leur LAN respectif (**.1**), et les 3 interfaces de R1 ont la dernière adresse utilisable (**.254**). Par exemple, pour le LAN 1 :  
+- **adresse réseau** : 10.0.0.0/8  
+- **première adresse utilisable** : 10.0.0.1/8  
+- **dernière adresse utilisable** : 10.255.255.254/8  
+- **adresse broadcast** : 10.255.255.255/8  
 
+Voyons comment configurer R1 en ligne de commande (CLI) :  
+
+➡️ on utilise la commande `en` (raccourci pour `enable`) pour entrer en Privileged Exec Mode  
+
+➡️ pour voir le statut de chaque interface du routeur, on utilise la commande `show ip interface brief`  
+
+<img width="1312" height="284" alt="image" src="https://github.com/user-attachments/assets/e85fbfe3-1651-477f-a0f9-380a04dc7a83" />  
+
+➡️ analysons les informations que nous donne la commande `show ip interface brief` :  
+- **Interface** : liste les interfaces de l'appareil  
+- **IP-Address** : montre les adresses IP de chaque interface. Sur la capture ci-dessus, on a la valeur "unassigned" car nous n'avons pas encore configuré R1  
+- **OK?** : cette colonne n'est pas très importante, mais elle indique si l'adresse IP est valide ou non. Sur des appareils modernes, il est de toute manière impossible de configurer une adresse IP invalide.    
+- **Method** : indique avec quelle méthode l'adresse IP a été assignée à l'interface. Ici, nous avons "unset" car nous n'avons pas encore assigné d'adresse IP aux interfaces.  
+- **Status** : état physique de l'interface (couche 1). Si l'interface est activée, qu'un câble y est connecté et que le câble est connecté à un appareil de l'autre côté, on doit avoir "up" au lieu de "administratively down". Si on a la valeur "administratively down", c'est que l'interface a été désactivée avec la commande `shutdown`. Par défaut, toutes les interfaces des **ROUTEURS CISCO** sont en "administratively down", et toutes les interfaces des **SWITCHS CISCO** ne sont pas "administratively down" par défaut (soit "up" si bien connectées, soit "down" si pas connectées). Ici, on configure un **ROUTEUR**, donc les interfaces sont "administratively down" par défaut.  
+- **Protocol** : État du protocole de couche 2 (liaison de données). Cette colonne indique si la communication au niveau de la couche liaison de données fonctionne correctement sur l'interface.    
+• `up` : la couche 2 fonctionne correctement. Si la colonne **Status** est également à `up`, l'interface est pleinement opérationnelle (`up/up`).  
+• `down` : la couche 2 ne fonctionne pas. Cela peut être dû au fait que l'interface est désactivée (`shutdown`), qu'aucun équipement ne répond de l'autre côté, ou à un problème de configuration de la couche 2.  
+En résumé :  
+• `up / up` → l'interface fonctionne normalement.  
+• `administratively down / down` → l'interface a été désactivée avec la commande `shutdown`.  
+• `down / down` → le lien physique est indisponible (ex. : câble débranché).  
+• `up / down` → le lien physique est établi (couche 1 OK), mais la couche 2 ne fonctionne pas (problème de protocole ou de configuration).  
+  
+
+  
+ 
+ 
   
 
