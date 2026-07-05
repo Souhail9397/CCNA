@@ -17,7 +17,7 @@ Encore un autre exemple : 10.0.0.0/8. Le masque de sous réseau est /8, donc les
   
 Prenons l'adresse 192.168.1.0/24 :  
 
-➡️ le masque de sous réseau est /24, c'est à dire que les **24 premiers bits** sont conscarés à la **partie réseau**. Concrètement, pour déterminer l'adresse réseau d'une adresse IP à l'aide du masque de sous réseau, on fait un **ET Logique**. Le principe est d'écrire l'adresse IP en format binaire. Prenons une adresse IP qui appartient au réseau 192.168.1.0/24 : 192.168.1.50/24, ce qui fait, en binaire, 11000000.10101000.00000001.00110010.  
+➡️ Le masque de sous réseau est /24, c'est à dire que les **24 premiers bits** sont conscarés à la **partie réseau**. Concrètement, pour déterminer l'adresse réseau d'une adresse IP à l'aide du masque de sous réseau, on fait un **ET Logique**. Le principe est d'écrire l'adresse IP en format binaire. Prenons une adresse IP qui appartient au réseau 192.168.1.0/24 : 192.168.1.50/24, ce qui fait, en binaire, 11000000.10101000.00000001.00110010.  
 Puis, on écrit également le masque de sous réseau en format binaire (24 premiers bits à 1) : 11111111.11111111.11111111.00000000.  
 Ensuite, on superpose l'adresse IP et le masque en binaire, et les colonnes où on retrouve un 1 sur l'adresse IP et un 1 sur le masque résultent en 1. Les colonnes avec un 0 et un 1 ou un 0 et un 0 résultent en 0.  
 
@@ -39,7 +39,7 @@ Pour déterminer la dernière adresse utilisable pour les hôtes, la procédure 
 
 **Exemples** :   
 
-➡️ adresse 172.16.0.0/16
+➡️ Adresse 172.16.0.0/16
   
 - 16 derniers bits pour la partie hôte, donc 00000000.00000000  
   
@@ -47,7 +47,7 @@ Pour déterminer la dernière adresse utilisable pour les hôtes, la procédure 
   
 - Dernière adresse : **11111111.11111110** : 172.16.**255.254**/16    
   
-➡️ adresse 10.0.0.0/8  
+➡️ Adresse 10.0.0.0/8  
   
 - 24 derniers bits pour la partie hôte, donc 00000000.00000000.00000000  
   
@@ -82,9 +82,9 @@ On voit :
 
 Voyons comment configurer R1 en ligne de commande (CLI) :  
 
-➡️ on utilise la commande `en` (raccourci pour `enable`) pour entrer en Privileged Exec Mode  
+➡️ On utilise la commande `en` (raccourci pour `enable`) pour entrer en Privileged Exec Mode  
 
-➡️ pour voir le statut de chaque interface du routeur, on utilise la commande `show ip interface brief`  
+➡️ Pour voir le statut de chaque interface du routeur, on utilise la commande `show ip interface brief`  
 
 <img width="1312" height="284" alt="image" src="https://github.com/user-attachments/assets/e85fbfe3-1651-477f-a0f9-380a04dc7a83" />  
 
@@ -102,6 +102,72 @@ En résumé :
 • `administratively down / down` → l'interface a été désactivée avec la commande `shutdown`.  
 • `down / down` → le lien physique est indisponible (ex. : câble débranché).  
 • `up / down` → le lien physique est établi (couche 1 OK), mais la couche 2 ne fonctionne pas (problème de protocole ou de configuration).  
+  
+## 🔌 Configuration de l'interface GigabitEthernet 0/0  
+  
+➡️ Taper la commande `conf t` pour entrer en Global Config Mode  
+  
+➡️ Pour choisir l'interface à configurer, on tape simplement la commande `interface gigabitethernet0/0`, qu'on peut aussi raccourcir en `in g0/0`  
+  
+➡️ Optionnel mais recommandé, on peut ajouter une description à l'interface, pour savoir à quoi elle sert précisemment. Ici, on ajoute une description pour préciser que l'interface relie le routeur à SW1 : `description ## to SW1 ##`  
+   
+➡️ On attribue l'adresse IP et le masque de sous-réseau (**LAN 1 10.255.255.254/8**) choisis à l'interface avec la commande `ip address 10.255.255.254 255.0.0.0`  
+  
+➡️ Il faut ensuite activer l'interface avec la commande `no shutdown` ou `no sh` en version raccourcie  
+  
+<img width="1292" height="229" alt="image" src="https://github.com/user-attachments/assets/485cca6d-39d3-42f9-892b-a3fcf98e19e7" />  
+  
+➡️ Une fois les configurations terminées, on vérifie le résultat avec la commande `do show ip interface brief` ou `do sh ip int br` en version raccourcie, ce qui nous montre :  
+  
+<img width="1298" height="248" alt="image" src="https://github.com/user-attachments/assets/c1879037-92c4-4d0a-a5bb-b3aef44e1213" />  
+
+Vu qu'on n'a seulement configuré l'interface **GigabitEthernet0/0**, il n'y a de nouvelles valeurs que sur cette ligne. L'adresse IP de l'interface est désormais 10.255.255.254, la colonne **Method** est passée en "manual" car nous avons configuré l'adresse IP manuellement, le **Status** est désormais en "up" grâce à la commande `no shutdown`, et le **Protocol** est également "up".   
+  
+## 🔌 Configuration de l'interface GigabitEthernet 0/1  
+
+➡️ On quitte la configuration de l'interface GigabitEthernet 0/0 en tapant la commande `exit` ou `ex`, puis on entre dans la configuration de l'interface GigabitEthernet 0/1 avec la commande `int g0/1`  
+   
+➡️ Ici, on ajoute une description pour préciser que l'interface relie le routeur à SW2 : `description ## to SW2 ##` 
+  
+➡️ On assigne l'adresse IP et le masque (**LAN 2 172.16.255.254 255.255.0.0**) avec la commande `ip add 172.16.255.254 255.255.0.0`  
+
+➡️ On active l'interface avec la commande `no sh`  
+
+➡️ Vérification de la configuration : `do sh ip int br`    
+  
+<img width="1272" height="223" alt="image" src="https://github.com/user-attachments/assets/a06814e9-28a3-4050-94b7-2381633e2f9a" />  
+
+
+## 🔌 Configuration de l'interface GigabitEthernet 0/2  
+
+➡️ On quitte la configuration de l'interface GigabitEthernet 0/1 en tapant la commande `exit` ou `ex`, puis on entre dans la configuration de l'interface GigabitEthernet 0/2 avec la commande `int g0/2`  
+
+➡️ Ici, on ajoute une description pour préciser que l'interface relie le routeur à SW3 : `description ## to SW3`   
+  
+➡️ On assigne l'adresse IP et le masque (**LAN 3 192.168.0.254 255.255.255.0**) avec la commande `ip add 192.168.0.254 255.255.255.0`  
+
+➡️ On active l'interface avec la commande `no sh`  
+
+➡️ Vérification de la configuration : `do sh ip int br`    
+  
+<img width="1305" height="231" alt="image" src="https://github.com/user-attachments/assets/314491f2-ceb2-444f-b4e7-75a9b49559e1" />  
+
+👍 Nos 3 interfaces sont désormais bien configurées avec les bonnes adresses IP.    
+
+## 🛠️ Commandes supplémentaires  
+
+➡️ `show interfaces [interface]` : montre les informations détaillées de l'interface. On y retrouve notamment l'état de l'interface (up, down, etc.), l'adresse MAC, l'adresse IP (si configurée), la bande passante (Bandwidth), la vitesse (Speed), le nombre de paquets envoyés et reçus, le nombre d'erreurs (CRC, collisions, drops...), le temps depuis le dernier changement d'état...  
+
+➡️ `show interfaces description` : cette commande affiche un résumé de toutes les interfaces. On y retrouve le nom de l'interface, le status (couche 1), le protocol couche 2) , la description (si on en a configuré une). Cette commande est très pratique sur un routeur ou un switch qui possède beaucoup d'interfaces. En un coup d'œil, on voit quelles interfaces sont actives et à quoi elles servent.  
+
+➡️ `do sh int desc` : montre les descriptions des interfaces   
+  
+  
+  
+  
+  
+
+  
   
 
   
