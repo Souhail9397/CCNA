@@ -182,7 +182,9 @@ A retenir :
 **4** - Configurer une description appropriée pour chaque interface des appareils réseau  
   
 **5** - Désactiver les interfaces qui ne sont pas connectées à d'autres appareils    
-  
+
+**6** - Sauvegarder les configurations    
+   
 ## 🅱️ Résultats  
   
 **1** -  
@@ -264,7 +266,18 @@ A retenir :
 - Taper les commandes suivantes : `interface range f0/3 - 24` -> `shutdown` -> `ex` -> `int g0/2` -> `shutdown`  
 <img width="600" height="608" alt="image" src="https://github.com/user-attachments/assets/ad22615b-40d8-4f3e-9779-c484873d931c" />  
 
-<img width="602" height="77" alt="image" src="https://github.com/user-attachments/assets/c3dc8616-c26d-48cd-9c44-823a2b2c1516" />
+<img width="602" height="77" alt="image" src="https://github.com/user-attachments/assets/c3dc8616-c26d-48cd-9c44-823a2b2c1516" />  
+
+**6** -  
+➡️ Sauvegarde des modifications sur R1 : `wr`  
+<img width="187" height="51" alt="image" src="https://github.com/user-attachments/assets/5a3e6962-f42c-4e8c-a385-1d1df233da2f" />  
+  
+➡️ Sauvegarde des modifications sur SW1 : `wr`  
+<img width="196" height="54" alt="image" src="https://github.com/user-attachments/assets/0de19b02-0e60-4e06-93b4-d9ece38e80ec" />  
+  
+➡️ Sauvegarde des modifications sur SW2 : `wr`  
+<img width="189" height="50" alt="image" src="https://github.com/user-attachments/assets/732c2e10-c9cd-4613-8fc9-9ba395ed2a5f" />    
+
   
 
   
