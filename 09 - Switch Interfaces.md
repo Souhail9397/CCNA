@@ -167,7 +167,76 @@ A retenir :
 - **Input errors** : total de compteurs variés, comme les 4 ci-dessus  
 - **Output errors** : trames que le switch a essayé d'envoyer, mais n'a pas réussi à cause d'une erreur
 
+# :five: Lab  
   
+<img width="778" height="312" alt="image" src="https://github.com/user-attachments/assets/b0ae8a63-eafd-4e19-ae53-ab8fd163659e" />
+  
+## 🅰️ Consignes  
+  
+**1** - Configurer le hostname de R1, SW1 et SW2  
+  
+**2** - Configurer les adresses IP de R1, PC1, PC2, PC3 et PC4  
+  
+**3** - Configurer manuellement la vitesse et le duplex des interfaces connectées à dd'autres appareils réseau (pas les hôtes)  
+  
+**4** - Configurer une description appropriée pour chaque interface des appareils réseau  
+  
+**5** - Désactiver les interfaces qui ne sont pas connectées à d'autres appareils    
+  
+## 🅱️ Résultats  
+  
+**1** -  
+- Configuration hostname R1 : `en` -> `conf t` -> `hostname R1`  
+<img width="440" height="63" alt="image" src="https://github.com/user-attachments/assets/2c45a426-57a2-4ed3-a889-bfa0b623b911" />  
+  
+- Configuration hostname SW1 : `en` -> `conf t` -> `hostname SW1`  
+<img width="433" height="65" alt="image" src="https://github.com/user-attachments/assets/f408df11-e4ae-4d7c-b6b6-49586989f273" />  
+  
+- Configuration hostname SW2 : `en` -> `conf t` -> `hostname SW2`  
+<img width="434" height="63" alt="image" src="https://github.com/user-attachments/assets/fded2e65-629b-4cfd-a4a1-c964f9815dd7" />  
+
+**2** -  
+- Configuration adresse IP R1 sur l'interface **GigabitEthernet 0/0** en **172.16.255.254/16** : `in g0/0` -> `ip add 172.16.255.254 255.255.0.0`  
+<img width="336" height="26" alt="image" src="https://github.com/user-attachments/assets/08d4d3d7-3ba1-4b74-a92b-12461bced141" />  
+  
+- Configuration adresse IP PC1 : cliquer sur PC1, aller dans l'onglet **Config** puis **FastEthernet0** et entrer l'adresse IPv4 **172.16.0.1** avec un masque en **255.255.0.0**  
+<img width="580" height="97" alt="image" src="https://github.com/user-attachments/assets/d31968ae-62d4-404e-8080-5064b9f93bdd" />  
+  
+- Configuration adresse IP PC2 : cliquer sur PC1, aller dans l'onglet **Config** puis **FastEthernet0** et entrer l'adresse IPv4 **172.16.0.2** avec un masque en **255.255.0.0** 
+<img width="576" height="91" alt="image" src="https://github.com/user-attachments/assets/e42d80a3-25bb-4e22-8a5e-08a8a0b9a918" />  
+  
+- Configuration adresse IP PC3 : cliquer sur PC1, aller dans l'onglet **Config** puis **FastEthernet0** et entrer l'adresse IPv4 **172.16.0.3** avec un masque en **255.255.0.0** 
+<img width="577" height="89" alt="image" src="https://github.com/user-attachments/assets/1c7cb2fe-780b-46a5-9b90-b08ff8c16bf9" />  
+  
+- Configuration adresse IP PC4 : cliquer sur PC1, aller dans l'onglet **Config** puis **FastEthernet0** et entrer l'adresse IPv4 **172.16.0.4** avec un masque en **255.255.0.0** 
+<img width="575" height="93" alt="image" src="https://github.com/user-attachments/assets/f26e4792-dece-4442-91cd-5db5749edb7f" />  
+
+**3** -  
+- Configuration vitesse et duplex **R1 - GigabitEthernet 0/0** : `in g0/0` -> `speed 1000` -> `duplex full`  
+<img width="196" height="50" alt="image" src="https://github.com/user-attachments/assets/f32280ae-1fc3-4f9d-8ae6-d821e2ea7979" />  
+  
+- Configuration vitesse et duplex **SW1 - GigabitEthernet 0/1** : `in g0/1` -> `speed 1000` -> `duplex full`     
+<img width="187" height="53" alt="image" src="https://github.com/user-attachments/assets/a54d96ba-7b6d-483d-b92d-7960e463e20c" />  
+
+- Configuration vitesse et duplex **SW1 - GigabitEthernet 0/2** : `ex` -> `int g0/2` -> `speed 1000` -> `duplex full`  
+<img width="189" height="64" alt="image" src="https://github.com/user-attachments/assets/14b84edc-0f4d-478c-bdde-f179c81370de" />  
+  
+- Configuration vitesse et duplex **SW2 - GigabitEthernet 0/1** : `en` -> `conf t` -> `int g0/1` ->  `speed 1000` -> `duplex full`  
+<img width="428" height="91" alt="image" src="https://github.com/user-attachments/assets/112d2bcb-3c97-4259-af8f-bf58e2f5c5eb" />
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+
+
   
   
   
