@@ -200,6 +200,7 @@ A retenir :
 **2** -  
 - Configuration adresse IP R1 sur l'interface **GigabitEthernet0/0** en **172.16.255.254/16** : `in g0/0` -> `ip add 172.16.255.254 255.255.0.0`  
 <img width="336" height="26" alt="image" src="https://github.com/user-attachments/assets/08d4d3d7-3ba1-4b74-a92b-12461bced141" />  
+
 ⚠️ On sait que sur les routeurs Cisco, les interfaces sont par défaut **administratively down**. Il faut donc activer l'interface **GigabitEthernet 0/0** avec la commande `no sh`  
 <img width="620" height="104" alt="image" src="https://github.com/user-attachments/assets/595b8e9d-21b2-45fe-9e86-d9a3e33358bd" />  
   
