@@ -163,7 +163,9 @@ Vu qu'on n'a seulement configuré l'interface **GigabitEthernet0/0**, il n'y a d
 ➡️ `do sh int desc` : montre les descriptions des interfaces   
 
 # :six: Lab  
-
+  
+<img width="704" height="264" alt="image" src="https://github.com/user-attachments/assets/0b0709fc-bb5f-4ec9-8015-0f17a4b5d671" />
+  
 ## 🅰️ Consignes  
 
 **1 -** Configurer le hostname de R1  
