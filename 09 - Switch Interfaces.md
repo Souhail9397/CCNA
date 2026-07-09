@@ -188,29 +188,25 @@ A retenir :
 **1** -  
 - Configuration hostname R1 : `en` -> `conf t` -> `hostname R1`  
 <img width="440" height="63" alt="image" src="https://github.com/user-attachments/assets/2c45a426-57a2-4ed3-a889-bfa0b623b911" />  
-
-__________________________________________    
+   
 - Configuration hostname SW1 : `en` -> `conf t` -> `hostname SW1`  
 <img width="433" height="65" alt="image" src="https://github.com/user-attachments/assets/f408df11-e4ae-4d7c-b6b6-49586989f273" />  
-
-__________________________________________   
+  
 - Configuration hostname SW2 : `en` -> `conf t` -> `hostname SW2`  
 <img width="434" height="63" alt="image" src="https://github.com/user-attachments/assets/fded2e65-629b-4cfd-a4a1-c964f9815dd7" />  
   
 **2** -  
-- Configuration adresse IP R1 sur l'interface **GigabitEthernet 0/0** en **172.16.255.254/16** : `in g0/0` -> `ip add 172.16.255.254 255.255.0.0`  
+- Configuration adresse IP R1 sur l'interface **GigabitEthernet0/0** en **172.16.255.254/16** : `in g0/0` -> `ip add 172.16.255.254 255.255.0.0`  
 <img width="336" height="26" alt="image" src="https://github.com/user-attachments/assets/08d4d3d7-3ba1-4b74-a92b-12461bced141" />  
-
-__________________________________________   
+⚠️ On sait que sur les routeurs Cisco, les interfaces sont par défaut **administratively down**. Il faut donc activer l'interface **GigabitEthernet 0/0** avec la commande `no sh`  
+<img width="620" height="104" alt="image" src="https://github.com/user-attachments/assets/595b8e9d-21b2-45fe-9e86-d9a3e33358bd" />  
+  
 - Configuration adresse IP PC1 : cliquer sur PC1, aller dans l'onglet **Config** puis **FastEthernet0** et entrer l'adresse IPv4 **172.16.0.1** avec un masque en **255.255.0.0**  
 <img width="580" height="97" alt="image" src="https://github.com/user-attachments/assets/d31968ae-62d4-404e-8080-5064b9f93bdd" />  
-
-__________________________________________   
+  
 - Configuration adresse IP PC2 : cliquer sur PC1, aller dans l'onglet **Config** puis **FastEthernet0** et entrer l'adresse IPv4 **172.16.0.2** avec un masque en **255.255.0.0** 
 <img width="576" height="91" alt="image" src="https://github.com/user-attachments/assets/e42d80a3-25bb-4e22-8a5e-08a8a0b9a918" />  
-
-__________________________________________   
-  
+   
 - Configuration adresse IP PC3 : cliquer sur PC1, aller dans l'onglet **Config** puis **FastEthernet0** et entrer l'adresse IPv4 **172.16.0.3** avec un masque en **255.255.0.0** 
 <img width="577" height="89" alt="image" src="https://github.com/user-attachments/assets/1c7cb2fe-780b-46a5-9b90-b08ff8c16bf9" />  
   
@@ -218,21 +214,60 @@ __________________________________________
 <img width="575" height="93" alt="image" src="https://github.com/user-attachments/assets/f26e4792-dece-4442-91cd-5db5749edb7f" />  
   
 **3** -  
-- Configuration vitesse et duplex **R1 - GigabitEthernet 0/0** : `in g0/0` -> `speed 1000` -> `duplex full`  
+- Configuration vitesse et duplex **R1 - GigabitEthernet0/0** : `in g0/0` -> `speed 1000` -> `duplex full`  
 <img width="196" height="50" alt="image" src="https://github.com/user-attachments/assets/f32280ae-1fc3-4f9d-8ae6-d821e2ea7979" />  
   
-__________________________________________  
-- Configuration vitesse et duplex **SW1 - GigabitEthernet 0/1** : `in g0/1` -> `speed 1000` -> `duplex full`     
+- Configuration vitesse et duplex **SW1 - GigabitEthernet0/1** : `in g0/1` -> `speed 1000` -> `duplex full`     
 <img width="187" height="53" alt="image" src="https://github.com/user-attachments/assets/a54d96ba-7b6d-483d-b92d-7960e463e20c" />  
-
-__________________________________________
-- Configuration vitesse et duplex **SW1 - GigabitEthernet 0/2** : `ex` -> `int g0/2` -> `speed 1000` -> `duplex full`  
+  
+- Configuration vitesse et duplex **SW1 - GigabitEthernet0/2** : `ex` -> `int g0/2` -> `speed 1000` -> `duplex full`  
 <img width="189" height="64" alt="image" src="https://github.com/user-attachments/assets/14b84edc-0f4d-478c-bdde-f179c81370de" />   
+  
+- Configuration vitesse et duplex **SW2 - GigabitEthernet0/1** : `en` -> `conf t` -> `int g0/1` ->  `speed 1000` -> `duplex full`  
+<img width="428" height="91" alt="image" src="https://github.com/user-attachments/assets/112d2bcb-3c97-4259-af8f-bf58e2f5c5eb" />  
+  
+**4** -  
+- Description de l'interface **GigabitEthernet0/0** de **R1** qui est reliée à l'interface **GigabitEthernet 0/1** de **SW1** : `en` -> `conf t` -> `in g0/0` -> `description ## to SW1 ##`   
+<img width="430" height="78" alt="image" src="https://github.com/user-attachments/assets/57099583-27be-4080-92ab-fabe73019749" />  
+  
+- Description de l'interface **GigabitEthernet0/1** de **SW1** qui est reliée à l'interface **GigabitEthernet0/0** de **R1** : `en` -> `conf t` -> `in g0/1` -> `description ## to R1 ##`   
+<img width="427" height="82" alt="image" src="https://github.com/user-attachments/assets/a454a3cc-c609-4ea8-9ac5-ada6690dce0a" />
+  
+- Description de l'interface **GigabitEthernet0/2** de **SW1** qui est reliée à l'interface **GigabitEthernet0/1** de **SW2** : `ex` -> `in g0/2` -> `description ## to SW2 ##`  
+<img width="304" height="53" alt="image" src="https://github.com/user-attachments/assets/5eaae23c-05ef-4d0c-be47-eaac1e70eca7" />  
+  
+- Description de l'interface **GigabitEthernet0/1** de **SW2** qui est reliée à l'interface **GigabitEthernet0/2** de **SW1** : `en` -> `conf t` -> `in g0/1` -> `description ## to SW1 ##`  
+<img width="434" height="78" alt="image" src="https://github.com/user-attachments/assets/d0d54ff2-f944-440c-b701-75ed504fcaf9" />  
 
-__________________________________________
-- Configuration vitesse et duplex **SW2 - GigabitEthernet 0/1** : `en` -> `conf t` -> `int g0/1` ->  `speed 1000` -> `duplex full`  
-<img width="428" height="91" alt="image" src="https://github.com/user-attachments/assets/112d2bcb-3c97-4259-af8f-bf58e2f5c5eb" />
+**5** -  
+➡️ **Désactivation des interfaces inutilisées de R1** :  
+- On vérifie les interfaces dont dispose R1 avec la commande `show ip int br`  
+<img width="571" height="94" alt="image" src="https://github.com/user-attachments/assets/d586aed9-2d2c-492e-ae38-7bb996fc60b1" />  
 
+- On constate que seule l'interface **GigabitEthernet0/0** est utilisée et configurée, et **GigabitEthernet0/1** et **GigabitEthernet0/2** ne sont pas utilisées. Cependant, étant donné que c'est un routeur, les interfaces sont par défaut en **administratively down**. Il n'y a donc aucune configuration à apporter ici  
+
+➡️ **Désactivation des interfaces inutilisées de SW1** :  
+- On vérifie les interfaces avec la commande `show ip int br`  
+<img width="567" height="390" alt="image" src="https://github.com/user-attachments/assets/62d9bf31-45e6-4084-a63f-a4e49df364f0" />   
+
+- Quatres interfaces sont utilisées : **FastEthernet0/1**, **FastEthernet0/2**, **GigabitEthernet 0/1** et **GigabitEthernet 0/2**  
+- On va donc désactiver les interfaces de **FastEthernet0/3** à **FastEthernet0/24**. Leur **Status** est "down", qui est différent de "administratively down". Avec un **Status** en "down", n'importe quel appareil non autorisé peut s'y connecter, c'est pourquoi il faut les passer en "administratively down"  
+- Taper les commandes suivantes : `interface range f0/3 - 24` -> `shutdown`   
+<img width="606" height="613" alt="image" src="https://github.com/user-attachments/assets/bc12c497-ae47-42bb-bcd0-54b1bc978159" />  
+
+➡️ **Désactivation des interfaces inutilisées de SW2** :   
+- On vérifie les interfaces avec la commande `show ip int br`  
+<img width="573" height="390" alt="image" src="https://github.com/user-attachments/assets/f37161ad-c142-41cf-807b-c12593565baf" />   
+
+- Trois interfaces sont utilisées :  **FastEthernet0/1**, **FastEthernet0/2** et **GigabitEthernet 0/1**  
+- On va désactiver les interfaces de **FastEthernet0/3** à **FastEthernet0/24** mais aussi la **GigabitEthernet0/2**  
+- Taper les commandes suivantes : `interface range f0/3 - 24` -> `shutdown` -> `ex` -> `int g0/2` -> `shutdown`  
+<img width="600" height="608" alt="image" src="https://github.com/user-attachments/assets/ad22615b-40d8-4f3e-9779-c484873d931c" />  
+
+<img width="602" height="77" alt="image" src="https://github.com/user-attachments/assets/c3dc8616-c26d-48cd-9c44-823a2b2c1516" />
+  
+
+  
 
 
   
