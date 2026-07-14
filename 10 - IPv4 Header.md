@@ -145,8 +145,31 @@ Protocol
 Header Checksum  
 Source IP  
 Destination IP  
+
+Nous allons étudier cette capture :    
+   
+<img width="1217" height="573" alt="image" src="https://github.com/user-attachments/assets/8367bf14-423d-4423-bc81-c935e65f5aa4" />  
+
+➡️ On se concentre sur la partie `Internet Protocol Version 4, Src : 192.168.1.1, Dst : 192.168.1.2`  
+
+➡️ On retrouve ces valeurs en hexadécimal en bas de la capture sur la partie `45 00 00 64 00 05 00 00 ff 01 38 40 c0 a8 01 01 c0 a8 01 02`  
   
-Il montre également des captures de paquets ICMP (ping) normaux et fragmentés pour illustrer le fonctionnement de la fragmentation.
+➡️ On retrouve les champs suivants :  
+| Octet | Valeur (hex) | Signification           |
+|-------|--------------|-------------------------|
+| 1     | 45           | Version + IHL           |
+| 2     | 00           | DSCP + ECN              |
+| 3-4   | 00 64        | Total Length            |
+| 5-6   | 00 05        | Identification          |
+| 7-8   | 00 00        | Flags + Fragment Offset |
+| 9     | ff           | TTL                     |
+| 10    | 01           | Protocol                |
+| 11-12 | 38 40        | Header Checksum         |
+| 13-16 | c0 a8 01 01  | Source IP               |
+| 17-20 | c0 a8 01 02  | Destination IP          |
+
+➡️ On interprète ces valeurs de la manière suivante :  
+- **Version + IHL (45)** : 4 en hexa = 0100 en binaire -> le champ **Version** fait 4 bits de long, donc 0100 = 4 bits = 4 valeur décimal = Version 4 = **IPv4**. Pour l'**IHL**, (question : si ihl fait 6 bits de long, pourquoi ici on n'a que 4 bits ?)
 
 À retenir pour le CCNA
 Un paquet = en-tête IPv4 + segment TCP/UDP.
