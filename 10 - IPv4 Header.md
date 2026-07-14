@@ -30,7 +30,7 @@ Indique la version du protocole IP utilisée.
 IPv4 = 4   
 IPv6 = 6  
   
-➡️ **IHL (Internet Header Length) (6 bits)**  
+➡️ **IHL (Internet Header Length) (4 bits)**  
   
 Indique la longueur de l'en-tête IPv4 uniquement.  
    
@@ -40,7 +40,7 @@ Indique la longueur de l'en-tête IPv4 uniquement.
   
 ⚠️ *Ne pas confondre avec Total Length, qui correspond à la taille du paquet complet.*
   
-➡️ **DSCP (2 bits)**  
+➡️ **DSCP (6 bits)**  
   
 Utilisé pour la **QoS (Quality of Service)**. Permet de donner une priorité plus élevée aux flux sensibles à la latence (VoIP, visioconférence, streaming...).  
   
@@ -157,6 +157,8 @@ Nous allons étudier cette capture :
 
 ➡️ On retrouve ces valeurs en hexadécimal en bas de la capture sur la partie `45 00 00 64 00 05 00 00 ff 01 38 40 c0 a8 01 01 c0 a8 01 02`  
   
+➡️ Chaque groupe de 2 caractères hexadécimaux = 1 octet = 8 bits. Exemple : 00 64 = 00 = 1 octet (soit 8 bits) et 64 = 1 octet (soit 8 bits) donc un total de 2 octets et 16 bits  
+   
 ➡️ On retrouve les champs suivants :  
 | Octet | Valeur (hex) | Signification           |
 |-------|--------------|-------------------------|
@@ -170,22 +172,50 @@ Nous allons étudier cette capture :
 | 11-12 | 38 40        | Header Checksum         |
 | 13-16 | c0 a8 01 01  | Source IP               |
 | 17-20 | c0 a8 01 02  | Destination IP          |
-
+  
 ➡️ On interprète ces valeurs de la manière suivante :  
-- **Version + IHL (45)** : 4 en hexa = 0100 en binaire -> le champ **Version** fait 4 bits de long, donc 0100 = 4 bits = 4 valeur décimal = Version 4 = **IPv4**. Pour l'**IHL**, (question : si ihl fait 6 bits de long, pourquoi ici on n'a que 4 bits ?)
+- **Version + IHL (45)** : 4 en hexa = 0100 en binaire -> le champ **Version** fait 4 bits de long, donc 0100 = 4 bits = 4 valeur décimal = Version 4 = **IPv4**. Pour l'**IHL**, on a une valeur de 5 en hexa = 0101 en binaire -> le champ **IHL** fait 4 bits de long, donc 0101 = 4 bits = 5 valeur décimal = IHL 5 * 4 = 20 (on multiplie toujours la valeur de l'IHL par 4, et sa valeur minimale doit être de 20)  
+  
+- **DSCP + ECN (00)** : on sait que **DSCP** fait 6 bits et **ECN** 2 bits, soit un total de 8 bits donc un octet. Les octets qui représentent **DSCP + ECN** est `00`. 000000 (6 premiers bits, DSCP) = DSCP 0. 00 (2 bits, ECN) = ECN 0  
 
-À retenir pour le CCNA
-Un paquet = en-tête IPv4 + segment TCP/UDP.
-Taille minimale de l'en-tête IPv4 : 20 octets.
-Taille maximale : 60 octets.
-Taille maximale d'un paquet IPv4 : 65 535 octets.
-MTU Ethernet : 1500 octets.
-TTL est décrémenté par chaque routeur.
-TTL = 0 → paquet supprimé.
-Les protocoles à retenir :
-ICMP = 1
-TCP = 6
-UDP = 17
-OSPF = 89
-La fragmentation utilise Identification, Flags et Fragment Offset.
-Le Header Checksum protège uniquement l'en-tête IPv4, pas les données.
+- **Total Length (00 64)** : la longueur de ce champ est de 16 bits. Sur la ligne de caractères hexa, **Total Length** correspond à la valeur `00 64`.  
+Pour convertir de l'hexa en décimal, on multiplie par puissances de 16. Dans ce cas, pour 0064, on fait :  
+  
+| Chiffre hexa     | 0        | 0        |    6     |    4     |
+|------------------|----------|----------|----------|----------|
+| Puissances de 16 | 16^3     | 16^2     | 16^1     | 16^0     |
+| Calcul           | 0 * 16^3 | 0 * 16^2 | 6 * 16^1 | 4 * 16^0 |
+| Résultat         | 0        | 0        | 96       | 4        |  
+
+On additionne le tout : 96 + 4 = 100. La valeur du **Total Length** est de 100 octets. Autrement dit, la taille totale de ce paquet IPv4 est de 100 octets.    
+  
+- **Identification (00 05)** : ce champ fait 16 bits de long : 0 = 4 bits, 0 = 4 bits, 0 = 4 bits et 5 = 4 bits, soit un total de 16 bits. En binaire, 0005 en hexa = 5 en décimal. On a ici un champ **Identification** à 5.  
+  
+- **Flags + Fragment Offset (00 00)** : **Flags** fait 3 bits et **Fragment Offset** fait 13 bits. Tout est à 0, ce qui signifie qu'il n'y a pas de fragmentation.  
+  
+- **TTL (ff)** : la longueur du **TTL** est de 8 bits. f = 4 bits et f = 4 bits, ce qui fait un total de 8. En hexa, ff = 255. Donc le **TTL** est de 255. Le paquet pourra traverser 255 routeurs avant d'être supprimé.   
+
+- **Protocol (01)** : la longueur du **Protocol** est de 8 bits. 01 en hexa = 1 en décimal. Donc la valeur du **Protocol** est de 1 (ICMP). Il s'agit donc ici d'un paquet ICMP, probablement un ping    
+  
+- **Source IP (c0 a8 01 01)** : la longueur de ce champ est de 32 bits. On a 4 octets, donc 4 octets * 8 bits = 32 bits. Après conversion, l'adresse IP c0.a8.01.01 = 192.168.1.1. C'est donc un PC avec cette adresse IP qui est à l'origine de l'envoi du paquet  
+
+- **Destination IP (c0 a8 01 02)** : la longueur de ce champ est de 32 bits. On a 4 octets, donc 4 octets * 8 bits = 32 bits. Après conversion, l'adresse IP c0.a8.01.02 = 192.168.1.2. C'est donc un PC avec cette adresse IP qui est destinataire du paquet  
+  
+## 💡 À retenir  
+  
+- **Un paquet** = en-tête IPv4 + segment TCP/UDP  
+- **Taille minimale de l'en-tête IPv4** : 20 octets    
+- **Taille maximale** : 60 octets.  
+- **Taille maximale d'un paquet IPv4** : 65 535 octets.  
+- **MTU** Ethernet : 1500 octets.  
+- **TTL** est décrémenté par chaque routeur.  
+- **TTL** = 0 → paquet supprimé.  
+
+**Les protocoles à retenir :**    
+**ICMP** = 1  
+**TCP** = 6  
+**UDP** = 17  
+**OSPF** = 89  
+
+La fragmentation utilise Identification, Flags et Fragment Offset.  
+Le Header Checksum protège uniquement l'en-tête IPv4, pas les données.  
