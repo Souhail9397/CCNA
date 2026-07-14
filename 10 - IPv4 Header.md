@@ -116,7 +116,7 @@ Adresse IPv4 du destinataire.
   
 Champ optionnel, très rarement utilisé. S'il est présent, la longueur de l'en-tête est supérieure à 20 octets.  
 
-➡️ **Fragmentation**  
+# :four: Fragmentation  
   
 La fragmentation se produit lorsqu'un paquet dépasse le MTU d'un lien (généralement 1500 octets sur Ethernet).  
   
@@ -128,7 +128,7 @@ Chaque fragment possède :
   
 Le réassemblage est effectué par l'hôte destinataire.  
   
-➡️ **Analyse Wireshark**  
+# :five: Analyse Wireshark   
   
 On retrouve tous les champs de l'en-tête IPv4 si on analyse une capture Wireshark :  
    
