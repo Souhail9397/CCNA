@@ -132,20 +132,20 @@ Le réassemblage est effectué par l'hôte destinataire.
   
 On retrouve tous les champs de l'en-tête IPv4 si on analyse une capture Wireshark :  
    
-Version
-IHL
-DSCP
-ECN
-Total Length
-Identification
-Flags
-Fragment Offset
-TTL
-Protocol
-Header Checksum
-Source IP
-Destination IP
-
+Version  
+IHL  
+DSCP  
+ECN  
+Total Length  
+Identification  
+Flags  
+Fragment Offset  
+TTL  
+Protocol  
+Header Checksum  
+Source IP  
+Destination IP  
+  
 Il montre également des captures de paquets ICMP (ping) normaux et fragmentés pour illustrer le fonctionnement de la fragmentation.
 
 À retenir pour le CCNA
