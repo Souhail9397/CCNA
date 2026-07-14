@@ -2,6 +2,9 @@
   
 L'en-tête IPv4 est ajouté à un segment TCP ou UDP afin de former un paquet IPv4. Il contient toutes les informations nécessaires aux routeurs pour acheminer le paquet jusqu'à sa destination (routage).  
   
+<img width="1293" height="385" alt="image" src="https://github.com/user-attachments/assets/46369c8a-3daa-44a0-8a2b-54b3cfa8726d" />
+
+  
 # :two: Encapsulation  
   
 Les données traversent les couches du modèle OSI selon l'ordre suivant :  
