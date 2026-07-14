@@ -27,7 +27,7 @@ Indique la version du protocole IP utilisée.
 IPv4 = 4   
 IPv6 = 6  
   
-➡️ **IHL (Internet Header Length)**  
+➡️ **IHL (Internet Header Length) (6 bits)**  
   
 Indique la longueur de l'en-tête IPv4 uniquement.  
    
@@ -37,15 +37,15 @@ Indique la longueur de l'en-tête IPv4 uniquement.
   
 ⚠️ *Ne pas confondre avec Total Length, qui correspond à la taille du paquet complet.*
   
-➡️ **DSCP**  
+➡️ **DSCP (2 bits)**  
   
 Utilisé pour la **QoS (Quality of Service)**. Permet de donner une priorité plus élevée aux flux sensibles à la latence (VoIP, visioconférence, streaming...).  
   
-➡️ **ECN**  
+➡️ **ECN (2 bits)**  
   
 Permet de signaler une congestion du réseau sans devoir supprimer les paquets.  
   
-➡️ **Total Length**  
+➡️ **Total Length (16 bits)**  
   
 Indique la taille totale du paquet IPv4 :  
   
@@ -57,11 +57,11 @@ Valeurs :
 - minimum : 20 octets  
 - maximum : 65 535 octets  
   
-➡️ **Identification**    
+➡️ **Identification (16 bits)**    
    
 Utilisé lors de la fragmentation. Tous les fragments d'un même paquet possèdent le même numéro d'identification afin d'être réassemblés à l'arrivée.  
   
-➡️ **Flags**  
+➡️ **Flags (3 bits)**  
   
 Contrôle la fragmentation.  
   
@@ -73,17 +73,17 @@ Les trois bits sont :
 - DF = 1 → interdiction de fragmenter.  
 - MF = 1 → d'autres fragments suivent.  
   
-➡️ **Fragment Offset**  
+➡️ **Fragment Offset (13 bits)**  
   
 Indique la position d'un fragment dans le paquet d'origine.  
   
 Permet au destinataire de reconstruire correctement le paquet même si les fragments arrivent dans le désordre.  
   
-➡️ **TTL (Time To Live)**  
+➡️ **TTL (Time To Live) (8 bits)**  
   
 Empêche les boucles de routage. Chaque routeur décrémente le TTL de 1. Lorsque le TTL atteint 0, le paquet est supprimé.  
   
-➡️ **Protocol**  
+➡️ **Protocol (8 bits)**  
   
 Indique le protocole de couche 4 encapsulé.  
   
@@ -96,7 +96,7 @@ Valeurs importantes à connaître :
 | 17	       | UDP            |
 | 89	       | OSPF           |
   
-➡️ **Header Checksum**  
+➡️ **Header Checksum (16 bits)**  
   
 Permet de vérifier l'intégrité de l'en-tête IPv4.  
   
@@ -104,11 +104,11 @@ Permet de vérifier l'intégrité de l'en-tête IPv4.
 
 La vérification des données est réalisée par TCP ou UDP.  
   
-➡️ **Source IP Address**  
+➡️ **Source IP Address (32 bits)**  
   
 Adresse IPv4 de l'expéditeur.  
   
-➡️ **Destination IP Address**    
+➡️ **Destination IP Address (32 bits)**    
   
 Adresse IPv4 du destinataire.  
 
